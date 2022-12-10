@@ -21,15 +21,7 @@ function onImgClick(e) {
   e.preventDefault();
 }
 
-// var lightbox = new SimpleLightbox('.gallery a', {
-//   /* options */
-// });
-
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function () {
-  // to do: show title
-});
-
-gallery.on('error.simplelightbox', function (e) {
-  console.log(e);
+var lightbox = new SimpleLightbox('.gallery .gallery__item', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });
