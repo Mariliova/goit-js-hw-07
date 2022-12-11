@@ -12,15 +12,6 @@ galleryItems.forEach(({ preview, original, description }) => {
   );
 });
 
-galleryEl.addEventListener('click', onImgClick);
-
-function onImgClick(e) {
-  if (!e.target.classList.contains('gallery__image')) {
-    return;
-  }
-  e.preventDefault();
-}
-
 var lightbox = new SimpleLightbox('.gallery .gallery__item', {
   captionsData: 'alt',
   captionDelay: 250,
