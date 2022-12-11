@@ -21,25 +21,26 @@ galleryItems.forEach(({ preview, original, description }) => {
 
 galleryEl.addEventListener('click', onImgClick);
 
+const instance = basicLightbox.create(`<img src="" width="800" height="600"?>`, {
+  onShow: instance => {
+    window.addEventListener('keydown', onEscDown);
+  },
+  onClose: instance => {
+    window.removeEventListener('keydown', onEscDown);
+  },
+});
+
 function onImgClick(e) {
+  e.preventDefault();
   if (!e.target.classList.contains('gallery__image')) {
     return;
   }
-  e.preventDefault();
-
-  const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" width="800" height="600">
-`);
-
+  instance.element().querySelector('img').src = e.target.dataset.source;
   instance.show();
+}
 
-  galleryEl.addEventListener(
-    'keydown',
-    e => {
-      if (e.code === 'Escape') {
-        instance.close();
-      }
-    },
-    { once: true }
-  );
+function onEscDown(e) {
+  if (e.key === 'Escape') {
+    instance.close();
+  }
 }
