@@ -22,10 +22,10 @@ galleryItems.forEach(({ preview, original, description }) => {
 galleryEl.addEventListener('click', onImgClick);
 
 const instance = basicLightbox.create(`<img src="" width="800" height="600"?>`, {
-  onShow: instance => {
+  onShow: () => {
     window.addEventListener('keydown', onEscDown);
   },
-  onClose: instance => {
+  onClose: () => {
     window.removeEventListener('keydown', onEscDown);
   },
 });
